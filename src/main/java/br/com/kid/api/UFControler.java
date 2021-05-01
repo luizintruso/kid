@@ -25,4 +25,9 @@ public class UFControler {
         return uf;
     }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        ufService.deletar(id);
+    }
+
 }

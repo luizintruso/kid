@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 public class UFService {
     private UFRepository ufRepositry;
 
-
     public List<UF> obterTodos() {
         return ufRepositry.findAll().stream().collect(Collectors.toList());
     }
@@ -22,4 +21,7 @@ public class UFService {
         ufRepositry.save(uf);
     }
 
+    public void deletar(Long id) {
+        ufRepositry.deleteById(id);
+    }
 }

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <!--
+        JHipster core tables.
+        The initial schema has the '00000000000001' id, so that it is over-written if we re-generate it.
+    -->
+    <changeSet id="00000000000001" author="diego.aires">
+        <createTable tableName="tipoendereco">
+            <column name="codtipoendereco" type="smallint"/>
+            <column name="desctipoendereco" type="varchar(100)"/>
+        </createTable>
+        <insert tableName="tipoendereco">
+            <column name="codtipoendereco" value="0"/>
+            <column name="desctipoendereco" value="RESIDENCIAL"/>
+        </insert>
+        <insert tableName="tipoendereco">
+            <column name="codtipoendereco" value="1"/>
+            <column name="desctipoendereco" value="COMERCIAL"/>
+        </insert>
+        <insert tableName="tipoendereco">
+            <column name="codtipoendereco" value="2"/>
+            <column name="desctipoendereco" value="OUTROS"/>
+        </insert>
+        <insert tableName="tipoendereco">
+            <column name="codtipoendereco" value="3"/>
+            <column name="desctipoendereco" value="CAIXA POSTAL"/>
+        </insert>
+
+        <createTable tableName="endereco">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="codtipoendereco" type="smallint"/>
+            <column name="idendereco" type="bigint"/>
+            <column name="nome" type="varchar(255)"/>
+            <column name="nomePai" type="varchar(255)"/>
+            <column name="nomeMae" type="varchar(255)"/>
+            <column name="rg" type="varchar(50)"/>
+            <column name="rgorgaemissor" type="varchar(50)"/>
+            <column name="rguf" type="varchar(50)"/>
+            <column name="cpf" type="varchar(13)"/>
+            <column name="codtiposexo" type="smallint"/>
+            <column name="codestadocivil" type="smallint"/>
+            <column name="datahorainicio" type="timestamp"/>
+        </createTable>
+
+        <createTable tableName="pessoa">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="codTipoPessoa" type="smallint"/>
+            <column name="numCpfCnpj" type="varchar(14)"/>
+            <column name="datahorainicio" type="timestamp"/>
+        </createTable>
+
+
+        <addForeignKeyConstraint baseColumnNames="idpessoa"
+                                 baseTableName="pessoa"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_pessoafisica_pessoa"
+                                 referencedColumnNames="id"
+                                 referencedTableName="uf"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+
+        <createTable tableName="pessoafisica">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="idpessoa" type="bigint"/>
+            <column name="idendereco" type="bigint"/>
+            <column name="nome" type="varchar(255)"/>
+            <column name="nomePai" type="varchar(255)"/>
+            <column name="nomeMae" type="varchar(255)"/>
+            <column name="rg" type="varchar(50)"/>
+            <column name="rgorgaemissor" type="varchar(50)"/>
+            <column name="rguf" type="varchar(50)"/>
+            <column name="cpf" type="varchar(13)"/>
+            <column name="codtiposexo" type="smallint"/>
+            <column name="codestadocivil" type="smallint"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="idpessoa"
+                                 baseTableName="pessoa"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_pessoafisica_pessoa"
+                                 referencedColumnNames="id"
+                                 referencedTableName="uf"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="idendereco"
+                                 baseTableName="endereco"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_cpessoafisica_endereco"
+                                 referencedColumnNames="id"
+                                 referencedTableName="uf"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+
+
+        <addForeignKeyConstraint baseColumnNames="idUf"
+                                 baseTableName="cidade"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_cidade_uf"
+                                 referencedColumnNames="id"
+                                 referencedTableName="uf"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+
+    </changeSet>
+</databaseChangeLog>
