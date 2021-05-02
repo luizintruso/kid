@@ -13,6 +13,7 @@ class PessoaServiceTest {
 
     @Test
     void obterTodos() {
-     System.out.println(service.obterTodos());
+     System.out.println("todos:" + service.obterTodos());
     }
+    
 }

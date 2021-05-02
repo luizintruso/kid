@@ -11,22 +11,30 @@
     <changeSet id="00000000000001" author="luiz.oliveira">
         <!--CRIANDO TABELA PESSOA-->
         <createTable tableName="pessoa">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="codtipopessoa" type="smallint"/>
+            <column name="nome" type="varchar(255)"/>
             <column name="email" type="varchar(255)"/>
             <column name="numcpfcnpj" type="varchar(14)"/>
             <column name="datahorainicio" type="timestamp"/>
         </createTable>
+      	<insert tableName="pessoa">
+			<column name="codtipopessoa" value="1"/>
+            <column name="nome" value="Luiz Henrique"/>
+            <column name="email" value="luiz@gmail.com"/>
+            <column name="numcpfcnpj" value="01548669113"/>
+            <column name="datahorainicio" value="2085-09-21"/>
+		</insert>
 
         <!--CRIANDO TABELA PESSOAFICISA-->
         <createTable tableName="pessoafisica">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="nomePai" type="varchar(255)"/>
-            <column name="nomeMae" type="varchar(255)"/>
+            <column name="nomepai" type="varchar(255)"/>
+            <column name="nomemae" type="varchar(255)"/>
             <column name="rg" type="varchar(50)"/>
             <column name="rgorgaoemissor" type="varchar(50)"/>
             <column name="rguf" type="varchar(50)"/>

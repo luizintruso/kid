@@ -1,19 +1,22 @@
 package br.com.kid.domain;
 
-import lombok.Data;
-
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "pessoafisica")
 public class PessoaFisica extends Pessoa{
 
-    @Column(name = "nomePai")
+    @Column(name = "nomepai")
     private String nomePai;
 
-    @Column(name = "nomeMae")
+    @Column(name = "nomemae")
     private String nomeMae;
 
     @Column(name = "rg")

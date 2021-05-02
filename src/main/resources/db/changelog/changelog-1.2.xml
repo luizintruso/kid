@@ -10,7 +10,7 @@
     -->
     <changeSet id="00000000000002" author="luiz.oliveira">
         <createTable tableName="endereco">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="codtipoendereco" type="smallint"/>
