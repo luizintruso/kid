@@ -1,16 +1,18 @@
 package br.com.kid.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
 import br.com.kid.domain.UF;
 import br.com.kid.repository.UFRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class UFService {
+	
     private UFRepository ufRepositry;
 
     public List<UF> obterTodos() {

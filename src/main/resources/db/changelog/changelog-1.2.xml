@@ -8,26 +8,41 @@
         JHipster core tables.
         The initial schema has the '00000000000001' id, so that it is over-written if we re-generate it.
     -->
-    <changeSet id="00000000000001" author="diego.aires">
-        <createTable tableName="tipoendereco">
+    <changeSet id="00000000000002" author="luiz.oliveira">
+        <createTable tableName="endereco">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
             <column name="codtipoendereco" type="smallint"/>
-            <column name="desctipoendereco" type="varchar(255)"/>
+            <column name="iduf" type="bigint"/>
+            <column name="idpessoa" type="bigint"/>
+            <column name="cep" type="integer"/>
+            <column name="cidade" type="varchar(255)"/>
+            <column name="bairro" type="varchar(255)"/>
+            <column name="descendereco" type="varchar(255)"/>
+            <column name="numero" type="integer"/>
+            <column name="desccomplemento" type="varchar(255)"/>
+            <column name="datahorainicio" type="timestamp"/>
+            <column name="dddtelefone" type="varchar(9)"/>
+            <column name="telefone" type="integer"/>
+            <column name="dddcelular" type="varchar(9)"/>
+            <column name="celular" type="varchar(255)"/>
         </createTable>
-        <insert tableName="tipoendereco">
-            <column name="codtipoendereco" value="1"/>
-            <column name="desctipoendereco" value="RESIDENCIAL"/>
-        </insert>
-        <insert tableName="tipoendereco">
-            <column name="codtipoendereco" value="2"/>
-            <column name="desctipoendereco" value="COMERCIAL"/>
-        </insert>
-        <insert tableName="tipoendereco">
-            <column name="codtipoendereco" value="3"/>
-            <column name="desctipoendereco" value="OUTROS"/>
-        </insert>
-        <insert tableName="tipoendereco">
-            <column name="codtipoendereco" value="4"/>
-            <column name="desctipoendereco" value="CAIXA POSTAL"/>
-        </insert>
+        <addForeignKeyConstraint baseColumnNames="iduf"
+                                 baseTableName="endereco"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_endereco_uf"
+                                 referencedColumnNames="id"
+                                 referencedTableName="uf"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="idpessoa"
+                                 baseTableName="endereco"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_endereco_pessoa"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pessoa"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
     </changeSet>
 </databaseChangeLog>

@@ -8,18 +8,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "pessoafisica")
-public class PessoaFisica {
-
-    @Id
-    @Column(name="id", insertable=true, updatable=true, unique=true, nullable=false)
-    private Long id;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idpessoa")
-    private Pessoa pessoa;
-
-    @Column(name = "nome")
-    private String nome;
+public class PessoaFisica extends Pessoa{
 
     @Column(name = "nomePai")
     private String nomePai;
@@ -30,7 +19,7 @@ public class PessoaFisica {
     @Column(name = "rg")
     private String rg;
 
-    @Column(name = "rgorgaemissor") // TODO: arrumar nome no banco
+    @Column(name = "rgorgaoemissor") 
     private String rgOrgaoEmissor;
 
     @Column(name = "rguf")

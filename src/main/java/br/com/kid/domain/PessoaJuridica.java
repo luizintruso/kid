@@ -1,22 +1,17 @@
 package br.com.kid.domain;
 
-import lombok.Data;
-
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "pessoajuridica")
-public class PessoaJuridica {
-
-    @Id
-    @Column(name="id", insertable=true, updatable=true, unique=true, nullable=false)
-    private Long id;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idpessoa")
-    private Pessoa pessoa;
+public class PessoaJuridica extends Pessoa{
 
     @Column(name = "nomecontratosocial")
     private String nomeContratoSocial;
@@ -42,7 +37,7 @@ public class PessoaJuridica {
     @Column(name = "dataultimaalteracaocontratosocial")
     private Date dataUltimaAlteracaoContratoSocial;
 
-    @Column(name = "numregsitrorepresentacao")//TODO: Arrumar nome banco
+    @Column(name = "numregistrorepresentacao")
     private String numRegistroRepresentacao;
 
     @Column(name = "dataregistrorepresentacao")

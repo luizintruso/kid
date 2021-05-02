@@ -19,7 +19,7 @@ public class Endereco {
     private TipoEndereco tipoEndereco;
 
     @ManyToOne (fetch = FetchType.EAGER)
-    @JoinColumn(name = "idUf")
+    @JoinColumn(name = "iduf")
     private UF uf;
 
     @ManyToOne (fetch = FetchType.EAGER)
@@ -59,7 +59,7 @@ public class Endereco {
     @Column(name = "dddcelular")
     private String dddCelular;
 
-   // @Column(name = "celular") -- TODO: arrumar no banco o tipo
-    //private String celular;
+    @Column(name = "celular") 
+    private String celular;
 
 }

@@ -1,36 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
-                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
     <!--
         JHipster core tables.
         The initial schema has the '00000000000001' id, so that it is over-written if we re-generate it.
     -->
-    <changeSet id="00000000000001" author="diego.aires">
-        <createTable tableName="cidade">
-            <column name="id" type="bigint" >
+    <changeSet id="00000000000001" author="luiz.oliveira">
+        <!--CRIANDO TABELA PESSOA-->
+        <createTable tableName="pessoa">
+            <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="nome" type="varchar(255)"/>
-            <column name="idUf" type="bigint"/>
+            <column name="codtipopessoa" type="smallint"/>
+            <column name="email" type="varchar(255)"/>
+            <column name="numcpfcnpj" type="varchar(14)"/>
+            <column name="datahorainicio" type="timestamp"/>
         </createTable>
-        <insert tableName="cidade">
-            <column name="id" value="1"/>
-            <column name="nome" value="Paraíso"/>
-            <column name="idUf" value="1"/>
-        </insert>
-        <addForeignKeyConstraint  baseColumnNames="idUf"
-                                  baseTableName="cidade"
-                                  baseTableSchemaName="public"
-                                  constraintName="fk_cidade_uf"
-                                  referencedColumnNames="id"
-                                  referencedTableName="uf"
-                                  referencedTableSchemaName="public"
-                                  validate="true"/>
 
+        <!--CRIANDO TABELA PESSOAFICISA-->
+        <createTable tableName="pessoafisica">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nomePai" type="varchar(255)"/>
+            <column name="nomeMae" type="varchar(255)"/>
+            <column name="rg" type="varchar(50)"/>
+            <column name="rgorgaoemissor" type="varchar(50)"/>
+            <column name="rguf" type="varchar(50)"/>
+            <column name="cpf" type="varchar(13)"/>
+            <column name="datanascimento" type="date"/>
+            <column name="idade" type="smallint"/>
+            <column name="codtiposexo" type="smallint"/>
+            <column name="codestadocivil" type="smallint"/>
+            <column name="nacionalidade" type="varchar(50)"/>
+            <column name="naturalidade" type="varchar(50)"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="id"
+                                 baseTableName="pessoafisica"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_pessoafisica_pessoa"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pessoa"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+
+        <!--CRIANDO TABELA PESSOAJURIDICA-->
+        <createTable tableName="pessoajuridica">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nomecontratosocial" type="varchar(255)"/>
+            <column name="nomefantasia" type="varchar(255)"/>
+            <column name="valorcapitalsocial" type=" decimal(19,4)"/>
+            <column name="numinscricaoestadual" type="varchar(15)"/>
+            <column name="numregistrojuntacomercial" type="varchar(24)"/>
+            <column name="dataregistrojuntacomercial" type="date"/>
+            <column name="numultimaalteracaocontratosocial" type="varchar(24)"/>
+            <column name="dataultimaalteracaocontratosocial" type="date"/>
+            <column name="numregistrorepresentacao" type="varchar(24)"/>
+            <column name="dataregistrorepresentacao" type="date"/>
+            <column name="contratosocial" type="varchar(255)"/>
+            <column name="numinscricaomunicipal" type="varchar(30)"/>
+            <column name="codnacionalidade" type="smallint"/>
+            <column name="bolmei" type="smallint"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="id"
+                                 baseTableName="pessoajuridica"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_pessoajuridica_pessoa"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pessoa"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
     </changeSet>
 </databaseChangeLog>

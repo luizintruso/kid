@@ -5,12 +5,15 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "pessoa")
 public class Pessoa {
 
@@ -21,10 +24,16 @@ public class Pessoa {
     @Column(name = "codtipopessoa")
     private int codTipoPessoa;
 
+    @Column(name = "nome")
+    private String nome;
+    
+    @Column(name = "email")
+    private String email;
+    
     @Column(name = "numcpfcnpj")
     private String numCpfCnpj;
 
-    @Column(name = "dataHorainicio")
+    @Column(name = "datahorainicio")
     private Date dataHoraInicio;
 
 }
