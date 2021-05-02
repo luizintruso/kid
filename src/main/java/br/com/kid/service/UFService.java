@@ -1,4 +1,4 @@
-package br.com.kid.servece;
+package br.com.kid.service;
 
 import br.com.kid.domain.UF;
 import br.com.kid.repository.UFRepository;
@@ -17,7 +17,7 @@ public class UFService {
         return ufRepositry.findAll().stream().collect(Collectors.toList());
     }
 
-    public void salve(UF uf) {
+    public void salvar(UF uf) {
         ufRepositry.save(uf);
     }
 

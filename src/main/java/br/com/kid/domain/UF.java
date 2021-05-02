@@ -2,8 +2,10 @@ package br.com.kid.domain;
 
 import lombok.Data;
 
-import javax.annotation.processing.Generated;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Data
 @Entity

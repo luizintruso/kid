@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <!--
+        JHipster core tables.
+        The initial schema has the '00000000000001' id, so that it is over-written if we re-generate it.
+    -->
+    <changeSet id="00000000000003" author="luiz.oliveira">
+        <!--CRIANDO TABELA PESSOA-->
+        <createTable tableName="pessoa">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="codTipoPessoa" type="smallint"/>
+            <column name="numCpfCnpj" type="varchar(14)"/>
+            <column name="datahorainicio" type="timestamp"/>
+        </createTable>
+
+        <!--CRIANDO TABELA PESSOAFICISA-->
+        <createTable tableName="pessoafisica">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="idpessoa" type="bigint"/>
+            <column name="nome" type="varchar(255)"/>
+            <column name="nomePai" type="varchar(255)"/>
+            <column name="nomeMae" type="varchar(255)"/>
+            <column name="rg" type="varchar(50)"/>
+            <column name="rgorgaemissor" type="varchar(50)"/>
+            <column name="rguf" type="varchar(50)"/>
+            <column name="cpf" type="varchar(13)"/>
+            <column name="datanascimento" type="date"/>
+            <column name="idade" type="smallint"/>
+            <column name="codtiposexo" type="smallint"/>
+            <column name="codestadocivil" type="smallint"/>
+            <column name="nacionalidade" type="varchar(50)"/>
+            <column name="naturalidade" type="varchar(50)"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="idpessoa"
+                                 baseTableName="pessoafisica"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_pessoafisica_pessoa"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pessoa"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+
+        <!--CRIANDO TABELA PESSOAJURIDICA-->
+        <createTable tableName="pessoajuridica">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="idpessoa" type="bigint"/>
+            <column name="nomecontratosocial" type="varchar(255)"/>
+            <column name="nomefantasia" type="varchar(255)"/>
+            <column name="valorcapitalsocial" type=" decimal(19,4)"/>
+            <column name="numinscricaoestadual" type="varchar(15)"/>
+            <column name="numregistrojuntacomercial" type="varchar(24)"/>
+            <column name="dataregistrojuntacomercial" type="date"/>
+            <column name="numultimaalteracaocontratosocial" type="varchar(24)"/>
+            <column name="dataultimaalteracaocontratosocial" type="date"/>
+            <column name="numregsitrorepresentacao" type="varchar(24)"/>
+            <column name="dataregistrorepresentacao" type="date"/>
+            <column name="contratosocial" type="varchar(255)"/>
+            <column name="numinscricaomunicipal" type="varchar(30)"/>
+            <column name="codnacionalidade" type="smallint"/>
+            <column name="bolmei" type="smallint"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="idpessoa"
+                                 baseTableName="pessoajuridica"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_pessoajuridica_pessoa"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pessoa"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+
+
+        <createTable tableName="endereco">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="codtipoendereco" type="smallint"/>
+            <column name="idUf" type="bigint"/>
+            <column name="idpessoa" type="bigint"/>
+            <column name="cep" type="integer"/>
+            <column name="cidade" type="varchar(255)"/>
+            <column name="bairro" type="varchar(255)"/>
+            <column name="descendereco" type="varchar(255)"/>
+            <column name="numero" type="integer"/>
+            <column name="desccomplemento" type="varchar(255)"/>
+            <column name="datahorainicio" type="timestamp"/>
+            <column name="dddtelefone" type="varchar(9)"/>
+            <column name="telefone" type="integer"/>
+            <column name="dddcelular" type="varchar(9)"/>
+            <column name="celular" type="timestamp"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="idUf"
+                                 baseTableName="endereco"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_endereco_uf"
+                                 referencedColumnNames="id"
+                                 referencedTableName="uf"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="idpessoa"
+                                 baseTableName="endereco"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_endereco_pessoa"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pessoa"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>
