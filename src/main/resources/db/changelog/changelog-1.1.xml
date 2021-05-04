@@ -18,12 +18,20 @@
             <column name="nome" type="varchar(255)"/>
             <column name="email" type="varchar(255)"/>
             <column name="numcpfcnpj" type="varchar(14)"/>
+            <column name="dddtelefone" type="varchar(2)"/>
+            <column name="telefone" type="varchar(9)"/>
+            <column name="dddcelular" type="varchar(2)"/>
+            <column name="celular" type="varchar(9)"/>
             <column name="datahorainicio" type="timestamp"/>
         </createTable>
       	<insert tableName="pessoa">
 			<column name="codtipopessoa" value="1"/>
             <column name="nome" value="Luiz Henrique"/>
             <column name="email" value="luiz@gmail.com"/>
+            <column name="dddtelefone" value="61"/>
+            <column name="telefone" value="33333333"/>
+            <column name="dddcelular" value="61"/>
+            <column name="celular" value="99999999"/>
             <column name="numcpfcnpj" value="01548669113"/>
             <column name="datahorainicio" value="2085-09-21"/>
 		</insert>

@@ -60,16 +60,4 @@ public class Endereco {
     @Column(name = "datahorainicio")
     private Date dataHoraInicio;
 
-    @Column(name = "dddtelefone")
-    private String dddTelefone;
-
-    @Column(name = "telefone")
-    private String telefone;
-
-    @Column(name = "dddcelular")
-    private String dddCelular;
-
-    @Column(name = "celular") 
-    private String celular;
-
 }

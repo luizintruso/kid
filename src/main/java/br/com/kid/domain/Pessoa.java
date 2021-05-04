@@ -35,6 +35,18 @@ public class Pessoa {
     
     @Column(name = "numcpfcnpj")
     private String numCpfCnpj;
+    
+    @Column(name = "dddtelefone")
+    private String dddTelefone;
+
+    @Column(name = "telefone")
+    private String telefone;
+
+    @Column(name = "dddcelular")
+    private String dddCelular;
+
+    @Column(name = "celular") 
+    private String celular;
 
     @Column(name = "datahorainicio")
     private Date dataHoraInicio;

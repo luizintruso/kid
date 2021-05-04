@@ -23,10 +23,6 @@
             <column name="numero" type="integer"/>
             <column name="desccomplemento" type="varchar(255)"/>
             <column name="datahorainicio" type="timestamp"/>
-            <column name="dddtelefone" type="varchar(9)"/>
-            <column name="telefone" type="integer"/>
-            <column name="dddcelular" type="varchar(9)"/>
-            <column name="celular" type="varchar(255)"/>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="iduf"
                                  baseTableName="endereco"
