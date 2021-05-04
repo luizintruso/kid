@@ -11,19 +11,17 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class UFService {
+public class UFService implements PadraoService<UF, Long> {
 	
-    private UFRepository ufRepositry;
+    private UFRepository ufRepository;
 
     public List<UF> obterTodos() {
-        return ufRepositry.findAll().stream().collect(Collectors.toList());
+        return ufRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    public void salvar(UF uf) {
-        ufRepositry.save(uf);
-    }
+	@Override
+	public UFRepository getRepository() {
+		return ufRepository;
+	}
 
-    public void deletar(Long id) {
-        ufRepositry.deleteById(id);
-    }
 }
