@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PessoaControler {
 
+	@Autowired
     private PessoaService pessoaService;
 	
 	@Autowired
@@ -41,7 +42,7 @@ public class PessoaControler {
     }
 
     @PostMapping
-    public PessoaDTO salve(@RequestBody PessoaDTO pessoa) {
+    public PessoaDTO salvar(@RequestBody PessoaDTO pessoa) {
     log.info(pessoa.getEmail());
     if(pessoa instanceof PessoaFisicaDTO) {
     	parser.toDaomin((PessoaFisicaDTO)pessoa);
@@ -53,7 +54,7 @@ public class PessoaControler {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public void deletar(@PathVariable Long id) {
         pessoaService.deletar(id);
     }
 
