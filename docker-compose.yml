@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  keycloak:
+    image: jboss/keycloak
+    restart: always
+    environment:
+      KEYCLOAK_VERSION: 6.0.1
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      KEYCLOAK_IMPORT: /tmp/realm-export.json
+    ports:
+      - "8180:8080"
+    volumes:
+      - ./keycloack/realm-export.json:/tmp/realm-export.json
+  teste-postgres-compose:
+    image: postgres:12.3
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "15432:5432"
+    volumes:
+      - C:/Desenvolvimento/workspace_kid/storagepostgres:/var/lib/postgresql/data
+
+      
