@@ -15,15 +15,10 @@ public class EnderecoDTO {
 
     private Integer cep;
     private String cidade;
-    private String sigla;
     private String bairro;
     private String descEndereco;
     private Integer numero;
     private String descComplemento;
     private LocalDate dataHoraInicio;
-    private String dddTelefone;
-    private String telefone;
-    private String dddCelular;
-    private String celular;
 
 }

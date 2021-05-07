@@ -28,4 +28,8 @@ public class PessoaService {
     public void deletar(Long id) {
         pessoaRepository.deleteById(id);
     }
+
+	public Pessoa obter(Long id) {
+		return pessoaRepository.findById(id).orElseThrow(() -> new RuntimeException("Pessoa não encontrada"));
+	}
 }

@@ -1,7 +1,6 @@
 package br.com.kid.dto;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
@@ -21,11 +20,15 @@ import lombok.Data;
 public class PessoaDTO {
 
     private Long id;
-    private int codTipoPessoa;
+//    private int codTipoPessoa;
     private String nome;
     private String email;
     private String numCpfCnpj;
+    private String dddTelefone;
+    private String telefone;
+    private String dddCelular;
+    private String celular;
     private LocalDateTime dataHoraInicio;
-    private List<EnderecoDTO> enderecos;
-
+    private EnderecoDTO endereco;
+    
 }
