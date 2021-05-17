@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <!--
+        JHipster core tables.
+        The initial schema has the '00000000000001' id, so that it is over-written if we re-generate it.
+    -->
+    <changeSet id="00000000000002" author="luiz.oliveira">
+        <createTable tableName="endereco">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="codtipoendereco" type="smallint"/>
+            <column name="iduf" type="bigint"/>
+            <column name="idpessoa" type="bigint"/>
+            <column name="cep" type="integer"/>
+            <column name="cidade" type="varchar(255)"/>
+            <column name="bairro" type="varchar(255)"/>
+            <column name="descendereco" type="varchar(255)"/>
+            <column name="numero" type="integer"/>
+            <column name="desccomplemento" type="varchar(255)"/>
+            <column name="datahorainicio" type="timestamp"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="iduf"
+                                 baseTableName="endereco"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_endereco_uf"
+                                 referencedColumnNames="id"
+                                 referencedTableName="uf"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="idpessoa"
+                                 baseTableName="endereco"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_endereco_pessoa"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pessoa"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>
