@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <!--
+        JHipster core tables.
+        The initial schema has the '00000000000001' id, so that it is over-written if we re-generate it.
+    -->
+    <changeSet id="00000000000003" author="">
+        <createTable tableName="categoria">
+            <column name="id" type="smallint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="idcategoriapai" type="smallint">
+            </column>
+            <column name="nome" type="varchar(120)"/>
+            <column name="sigla" type="varchar(10)"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="idcategoriapai"
+                                 baseTableName="categoria"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_categoria_pk_categoria"
+                                 referencedColumnNames="id"
+                                 referencedTableName="categoria"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+        <insert tableName="categoria">
+            <column name="nome" value="Bloco de Marmoore" />
+            <column name="sigla" value="BLCO" />
+        </insert>
+
+        <insert tableName="categoria">
+            <column name="idcategoriapai" value="1" />
+            <column name="nome" value="Bloco de Marmoore 110X220" />
+            <column name="sigla" value="BLCO" />
+        </insert>
+
+        <createTable tableName="produto">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nome" type="varchar(120)"/>
+            <column name="modelo" type="varchar(100)"/>
+            <column name="descricao" type="varchar(120)"/>
+        </createTable>
+
+        <createTable tableName="produtocategoria">
+            <column name="idcategoria" type="smallint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="idproduto" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="idcategoria"
+                                 baseTableName="produtocategoria"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_categora_pk_produtocategoria"
+                                 referencedColumnNames="id"
+                                 referencedTableName="categoria"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="idproduto"
+                                 baseTableName="produtocategoria"
+                                 baseTableSchemaName="public"
+                                 constraintName="fk_produto_pk_produtocategoria"
+                                 referencedColumnNames="id"
+                                 referencedTableName="produto"
+                                 referencedTableSchemaName="public"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>
