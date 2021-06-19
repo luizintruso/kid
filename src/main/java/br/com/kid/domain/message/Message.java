@@ -6,7 +6,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum Message {
-    ENTIDADE_NAO_ENCONTRADA("msg.error.001");
-
+    ENTIDADE_NAO_ENCONTRADA("msg.error.001"),
+    REQUISICAO_INVALIDA("msg.error.002");
     private String idMensagem;
 }

@@ -9,12 +9,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ResourceBundle;
 
 @Slf4j
 @ControllerAdvice
@@ -30,6 +28,7 @@ public class DomainHandler {
         final ProblemDetail detail = ProblemDetail.
                 builder().
                 detail(mensagem).
+                status(exception.getStatus().value()).
                 title(BAD_REQUEST).
                 instance(new URI(req.getRequestURI())).
 

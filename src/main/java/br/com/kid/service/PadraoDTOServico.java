@@ -5,6 +5,8 @@ import br.com.kid.dto.DTOPadrao;
 import br.com.kid.dto.parser.PadraoParser;
 import br.com.kid.exception.DomainException;
 import lombok.SneakyThrows;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.io.Serializable;
@@ -12,8 +14,8 @@ import java.util.Optional;
 
 public abstract class PadraoDTOServico<D, I extends Serializable, T extends DTOPadrao<I>, R extends JpaRepository<D, I>, P extends PadraoParser<T, D>> {
 
-    private final R repository;
-    private final P conversor;
+    protected final R repository;
+    protected final P conversor;
 
     public PadraoDTOServico(R repository, P conversor) {
         this.repository = repository;
@@ -49,5 +51,11 @@ public abstract class PadraoDTOServico<D, I extends Serializable, T extends DTOP
     public void delete(I id) {
         final Optional<D> domainOpt = this.repository.findById(id);
         this.repository.delete(domainOpt.orElseThrow(() -> new DomainException(Message.ENTIDADE_NAO_ENCONTRADA)));
+    }
+
+
+    @SneakyThrows
+    public Page<T> findPage(Pageable pageable) {
+        return conversor.toDtoPage(this.repository.findAll(pageable));
     }
 }
